@@ -33,10 +33,10 @@ npm start
 **Demo users** (no password required — just click to log in):
 | Name         | Email              | Role         |
 |--------------|--------------------|--------------|
-| Alex Chen    | alex@dev.io        | Senior Dev   |
-| Maya Patel   | maya@dev.io        | Backend Dev  |
-| Jordan Kim   | jordan@dev.io      | Frontend Dev |
-| Sam Torres   | sam@dev.io         | DevOps       |
+| Ravi More    | ravi@dev.io        | Senior Dev   |
+| Radha Thakrey| radha@dev.io       | Backend Dev  |
+| Mahesh Gauda | mahesh@dev.io      | Frontend Dev |
+| Sam Patric   | sam@dev.io         | DevOps Engin |
 
 ---
 
