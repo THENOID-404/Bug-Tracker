@@ -19,7 +19,7 @@ spec:
   source:
     type: Git
     git:
-      uri: https://github.com/yourorg/bugtracker.git   # ← Update this
+      uri: https://github.com/THENOID-404/Bug-Tracker.git  # ← Update this
       ref: main
   strategy:
     type: Docker
