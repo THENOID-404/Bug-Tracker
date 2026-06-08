@@ -1,0 +1,28 @@
+.stats-bar {
+  background: var(--bg-surface); border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+.stats-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; gap: 20px; height: 52px;
+}
+.stat-item { display: flex; align-items: baseline; gap: 6px; }
+.stat-value {
+  font-size: 18px; font-weight: 700; font-family: var(--font-display);
+  color: var(--text-primary);
+}
+.stat-value.accent { color: var(--accent); }
+.stat-value.purple { color: var(--purple); }
+.stat-value.green { color: var(--green); }
+.stat-value.red { color: var(--red); }
+.stat-label { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; }
+.stat-divider { width: 1px; height: 20px; background: var(--border); }
+
+.stats-bar-chart {
+  flex: 1; height: 4px; background: var(--bg-base);
+  border-radius: 2px; overflow: hidden; display: flex; margin-left: 8px;
+}
+.bar-seg { height: 100%; transition: width 0.4s ease; }
+.bar-seg.open { background: var(--accent); }
+.bar-seg.in-progress { background: var(--purple); }
+.bar-seg.resolved { background: var(--green); }

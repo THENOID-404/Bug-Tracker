@@ -1,0 +1,99 @@
+---
+# ─── Namespace (optional, adjust to your project) ─────────────────────────────
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: bugtracker
+# ---
+
+# ─── Deployment ───────────────────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bugtracker
+  labels:
+    app: bugtracker
+    version: "2.1.0"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bugtracker
+  template:
+    metadata:
+      labels:
+        app: bugtracker
+    spec:
+      containers:
+        - name: bugtracker
+          image: bugtracker:latest          # Replace with your registry image
+          # image: quay.io/yourorg/bugtracker:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+
+---
+# ─── Service ──────────────────────────────────────────────────────────────────
+apiVersion: v1
+kind: Service
+metadata:
+  name: bugtracker
+  labels:
+    app: bugtracker
+spec:
+  selector:
+    app: bugtracker
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP
+
+---
+# ─── Route (OpenShift specific — exposes app externally) ──────────────────────
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: bugtracker
+  labels:
+    app: bugtracker
+spec:
+  to:
+    kind: Service
+    name: bugtracker
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
