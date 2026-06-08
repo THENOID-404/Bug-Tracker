@@ -4,9 +4,9 @@ const AuthContext = createContext();
 
 const DEMO_USERS = [
   { id: 'u1', name: 'Ravi More', email: 'ravi@dev.io', avatar: 'RM', role: 'Senior Dev' },
-  { id: 'u2', name: 'Maya Patel', email: 'maya@dev.io', avatar: 'MP', role: 'Backend Dev' },
-  { id: 'u3', name: 'Jordan Kim', email: 'jordan@dev.io', avatar: 'JK', role: 'Frontend Dev' },
-  { id: 'u4', name: 'Sam Torres', email: 'sam@dev.io', avatar: 'ST', role: 'DevOps' },
+  { id: 'u2', name: 'Radha Thakrey', email: 'radha@dev.io', avatar: 'RT', role: 'Backend Dev' },
+  { id: 'u3', name: 'Mahesh Gouda', email: 'mahesh@dev.io', avatar: 'MG', role: 'Frontend Dev' },
+  { id: 'u4', name: 'Sam patric', email: 'sam@dev.io', avatar: 'SP', role: 'DevOps Engineer' },
 ];
 
 export function AuthProvider({ children }) {
