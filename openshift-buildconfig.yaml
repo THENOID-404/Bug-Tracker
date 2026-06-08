@@ -33,4 +33,4 @@ spec:
     - type: ConfigChange
     - type: GitHub
       github:
-        secret: your-github-webhook-secret              # ← Update this
+        secret: abc123       # ← Update this
