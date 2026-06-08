@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Copy dependency files first for layer caching
 COPY package.json package-lock.json* ./
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps && npm install ajv@^8.0.0
 
 # Copy source and build
 COPY . .
