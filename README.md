@@ -29,6 +29,22 @@ A developer-first bug ticketing and collaboration tool. Deployable anywhere via 
 <img width="1024" height="1536" alt="ChatGPT Image Jun 9, 2026, 07_32_21 PM" src="https://github.com/user-attachments/assets/15f9ed2d-9e58-4847-992e-3ba76d60c656" />
 
 
+---
+
+## Skills Demonstrated
+
+- OpenShift Deployment
+- BuildConfig & ImageStreams
+- Containerization with Docker
+- Kubernetes Services & Routes
+- Application Scaling
+- Pod Monitoring
+- Troubleshooting
+- CI/CD Fundamentals
+
+
+---
+
 
 
 
