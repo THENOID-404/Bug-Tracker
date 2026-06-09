@@ -4,7 +4,7 @@ A developer first bug ticketing and collaboration tool. Deployable anywhere via 
 
 ---
 
-Tech Stack: OpenShift | Docker | React | Kubernetes | Nginx | GitHub
+Tech Stack: OpenShift | Docker | React | Kubernetes | Nginx | GitHub | oc CLI
 
 ---
 
