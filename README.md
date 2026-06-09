@@ -1,6 +1,6 @@
-# ⬡ BugTracker
+# ⬡ Bug-Tracker-App
 
-A developer-first bug ticketing and collaboration tool. Built with React, deployable anywhere via Docker — fully OpenShift-ready.
+A developer-first bug ticketing and collaboration tool. Deployable anywhere via Docker — fully OpenShift-ready.
 
 ---
 
@@ -31,12 +31,12 @@ npm start
 ```
 
 **Demo users** (no password required — just click to log in):
-| Name         | Email              | Role         |
-|--------------|--------------------|--------------|
-| Ravi More    | ravi@dev.io        | Senior Dev   |
-| Radha Thakrey| radha@dev.io       | Backend Dev  |
-| Mahesh Gauda | mahesh@dev.io      | Frontend Dev |
-| Sam Patric   | sam@dev.io         | DevOps Engin |
+| Name          | Email             | Role           |
+|---------------|-------------------|----------------|
+| Ravi More     | ravi@dev.io       | Senior Dev     |
+| Radha Thakrey | radha@dev.io      | Backend Dev    |
+| Mahesh Gauda  | mahesh@dev.io     | Frontend Dev   |
+| Sam Patric    | sam@dev.io        | DevOps Engin   |
 
 ---
 
@@ -46,10 +46,10 @@ npm start
 
 ```bash
 # Build image
-docker build -t bugtracker:latest .
+docker build -t bug-tracker-app:latest .
 
 # Run container (port 8080)
-docker run -p 8080:8080 bugtracker:latest
+docker run -p 8080:8080 bug-tracker-app:latest
 
 # Visit http://localhost:8080
 ```
@@ -61,77 +61,83 @@ docker run -p 8080:8080 bugtracker:latest
 docker-compose up --build
 
 # Development with hot reload (port 3000)
-docker-compose --profile dev up bugtracker-dev
+docker-compose --profile dev up bug-tracker-app-dev
 ```
 
 ---
 
 ## OpenShift Deployment
 
-### Option A — Deploy from Pre-built Image (Recommended)
+### Option A — Build on OpenShift from GitHub (Recommended)
 
-**Step 1: Build and push image to a registry**
-```bash
-# Build
-docker build -t bugtracker:latest .
-
-# Tag for your registry (Quay, Docker Hub, etc.)
-docker tag bugtracker:latest quay.io/YOUR_ORG/bugtracker:latest
-
-# Push
-docker push quay.io/YOUR_ORG/bugtracker:latest
-```
-
-**Step 2: Update the image reference**
-
-Edit `openshift-deployment.yaml` and update the `image:` field:
-```yaml
-image: quay.io/YOUR_ORG/bugtracker:latest
-```
-
-**Step 3: Apply manifests**
-```bash
-# Login to OpenShift
-oc login --token=<your-token> --server=https://your-cluster.example.com
-
-# Create/select project
-oc new-project bugtracker   # or: oc project your-existing-project
-
-# Deploy
-oc apply -f openshift-deployment.yaml
-
-# Check status
-oc get pods
-oc get route bugtracker
-
-# Get the public URL
-oc get route bugtracker -o jsonpath='{.spec.host}'
-```
-
----
-
-### Option B — Build on OpenShift (BuildConfig / S2I)
-
-Use this if you want OpenShift to build the image from your Git repo directly.
+This is the approach used for the live deployment of this project.
 
 **Step 1: Update BuildConfig**
 
 Edit `openshift-buildconfig.yaml`:
 ```yaml
 git:
-  uri: https://github.com/YOUR_ORG/bugtracker.git
+  uri: https://github.com/THENOID-404/Bug-Tracker-App.git
 ```
 
-**Step 2: Apply all resources**
+Also update the image reference in `openshift-deployment.yaml`:
+```yaml
+image: image-registry.openshift-image-registry.svc:5000/YOUR-PROJECT-NAME/bug-tracker-app:latest
+```
+
+**Step 2: Login to OpenShift**
+```bash
+oc login --token=<your-token> --server=https://your-cluster.example.com
+```
+
+**Step 3: Apply all resources**
 ```bash
 oc apply -f openshift-buildconfig.yaml
 oc apply -f openshift-deployment.yaml
+```
 
-# Trigger a build
-oc start-build bugtracker --follow
+**Step 4: Trigger a build**
+```bash
+oc start-build bug-tracker-app --follow
+```
 
-# Watch deployment
-oc rollout status deployment/bugtracker
+**Step 5: Restart deployment & verify**
+```bash
+oc rollout restart deployment/bug-tracker-app
+oc get pods
+oc get route
+```
+
+---
+
+### Option B — Deploy from Pre-built Image
+
+**Step 1: Build and push image to a registry**
+```bash
+# Build
+docker build -t bug-tracker-app:latest .
+
+# Tag for your registry (Quay, Docker Hub, etc.)
+docker tag bug-tracker-app:latest quay.io/YOUR_ORG/bug-tracker-app:latest
+
+# Push
+docker push quay.io/YOUR_ORG/bug-tracker-app:latest
+```
+
+**Step 2: Update the image reference**
+
+Edit `openshift-deployment.yaml`:
+```yaml
+image: quay.io/YOUR_ORG/bug-tracker-app:latest
+```
+
+**Step 3: Apply manifests**
+```bash
+oc login --token=<your-token> --server=https://your-cluster.example.com
+oc project your-existing-project
+oc apply -f openshift-deployment.yaml
+oc get pods
+oc get route
 ```
 
 ---
@@ -140,13 +146,39 @@ oc rollout status deployment/bugtracker
 
 ```bash
 # From Git repo (OpenShift auto-detects Dockerfile)
-oc new-app https://github.com/YOUR_ORG/bugtracker.git --name=bugtracker
+oc new-app https://github.com/THENOID-404/Bug-Tracker-App.git --name=bug-tracker-app
 
 # Expose route
-oc expose svc/bugtracker --port=8080
+oc expose svc/bug-tracker-app --port=8080
 
 # Get URL
-oc get route bugtracker
+oc get route bug-tracker-app
+```
+
+---
+
+## Common Operations
+
+### Scale pods up or down
+```bash
+oc scale deployment bug-tracker-app --replicas=2
+```
+
+### Check pod health
+```bash
+oc get pods
+oc logs -f <pod-name>
+oc describe pod <pod-name>
+```
+
+### View crash logs
+```bash
+oc logs <pod-name> --previous
+```
+
+### Delete failed build pods
+```bash
+oc delete pods --field-selector=status.phase=Failed
 ```
 
 ---
@@ -154,7 +186,7 @@ oc get route bugtracker
 ## Project Structure
 
 ```
-bugtracker/
+Bug-Tracker-App/
 ├── public/
 │   └── index.html                 # HTML entry point
 ├── src/
@@ -191,7 +223,7 @@ bugtracker/
 - Nginx is configured as a **non-root** user (OpenShift security policy)
 - The Route is configured with **TLS edge termination** (HTTPS)
 - Resources: requests 50m CPU / 64Mi RAM, limits 200m CPU / 256Mi RAM
-- Runs **2 replicas** by default for HA
+- Runs **2 replicas** by default for high availability
 
 ---
 
