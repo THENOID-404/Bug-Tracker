@@ -16,6 +16,11 @@ A developer-first bug ticketing and collaboration tool. Deployable anywhere via 
 
 ---
 
+## Screenshots
+
+<img width="1582" height="882" alt="Openshift Project" src="https://github.com/user-attachments/assets/efadf40b-98ed-4b2b-a4ff-dbc5aaf2c8c6" />
+
+
 ## Quick Start (Local Dev)
 
 ### Prerequisites
