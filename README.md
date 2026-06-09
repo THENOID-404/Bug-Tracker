@@ -4,7 +4,7 @@ A developer first bug ticketing and collaboration tool. Deployable anywhere via 
 
 ---
 
-[OpenShift Badge] [Docker Badge] [React Badge] [Kubernetes Badge] [Nginx Badge] [GitHub Badge]
+[OpenShift] [Docker] [React] [Kubernetes] [Nginx] [GitHub]
 
 ## Features
 
