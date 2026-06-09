@@ -4,6 +4,8 @@ A developer first bug ticketing and collaboration tool. Deployable anywhere via 
 
 ---
 
+[OpenShift Badge] [Docker Badge] [React Badge] [Kubernetes Badge] [Nginx Badge] [GitHub Badge]
+
 ## Features
 
 - **Ticket management** — Create, edit, delete tickets with status, priority, type
