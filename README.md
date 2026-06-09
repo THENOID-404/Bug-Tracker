@@ -19,6 +19,17 @@ A developer-first bug ticketing and collaboration tool. Deployable anywhere via 
 ## Screenshots
 
 <img width="1582" height="882" alt="Openshift Project" src="https://github.com/user-attachments/assets/efadf40b-98ed-4b2b-a4ff-dbc5aaf2c8c6" />
+<img width="1600" height="411" alt="Project Pods" src="https://github.com/user-attachments/assets/8850c529-bd62-4483-a165-2c5ddde070ca" />
+<img width="1918" height="964" alt="APP" src="https://github.com/user-attachments/assets/200a9005-711c-4d03-b4fc-ed2a7328297b" />
+
+---
+
+## Architecture
+
+<img width="1024" height="1536" alt="ChatGPT Image Jun 9, 2026, 07_32_21 PM" src="https://github.com/user-attachments/assets/15f9ed2d-9e58-4847-992e-3ba76d60c656" />
+
+
+
 
 
 ## Quick Start (Local Dev)
