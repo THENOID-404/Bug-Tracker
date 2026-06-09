@@ -45,6 +45,17 @@ A developer-first bug ticketing and collaboration tool. Deployable anywhere via 
 
 ---
 
+## Production Support Operations Performed
+
+- Scaled deployment from 1 to 2 replicas
+- Performed rollout restarts
+- Investigated pod startup issues
+- Analyzed application logs using oc logs
+- Verified pod health and deployment status
+- Validated route accessibilit
+
+  
+---
 
 
 
