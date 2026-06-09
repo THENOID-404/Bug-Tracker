@@ -1,6 +1,6 @@
 # ⬡ Bug-Tracker-App
 
-A developer-first bug ticketing and collaboration tool. Deployable anywhere via Docker — fully OpenShift-ready.
+A developer first bug ticketing and collaboration tool. Deployable anywhere via Docker with fully OpenShift-ready.
 
 ---
 
